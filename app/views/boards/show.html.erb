@@ -40,26 +40,25 @@ Add post
 </button>
 </form>
 
-<div>
-  <div>
-    <h2>
-      Edit board
-    </h2>
-
-    <form action="/modify_board/<%= @the_board.id %>"  method="post" >
-      <div>
-        <label for="name_box">
-          Name
-        </label>
-
-        <input type="text" id="name_box" name="query_name" value="<%= @the_board.name %>">
-      </div>
-
-      <button>
-        Update board
-      </button>
-    </form>
-  </div>
-</div>
 
 <hr>
+
+
+<h2>Active posts</h2>
+
+<table border="1">
+  <tr>
+    <th>Title</th>
+    <th>Body</th>
+    <th>Posted on</th>
+    <th>Expires on</th>
+  </tr>
+  <% @the_board.posts.each do |a_post| %>
+  <tr>
+    <td><%= a_post.title %></td>
+    <td><%= a_post.body %></td>
+    <td><%= a_post.created_at.strftime('%b %e, %Y') %></td>
+    <td><%= a_post.expires_on.strftime('%b %e, %Y') %></td>
+  </tr>
+  <% end %>
+</table>
